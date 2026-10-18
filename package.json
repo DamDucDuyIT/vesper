@@ -1,0 +1,41 @@
+{
+  "name": "vesper",
+  "productName": "Vesper",
+  "version": "1.0.0",
+  "description": "Native macOS Storage Inspector & Deep Cleaner — Uncover hidden ~/.* and node_modules bloat",
+  "author": "DamDucDuyIT",
+  "license": "MIT",
+  "main": "src/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamDucDuyIT/vesper.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --mac"
+  },
+  "keywords": [
+    "macos",
+    "storage-cleaner",
+    "disk-analyzer",
+    "system-data",
+    "documents-cleanup",
+    "node_modules",
+    "electron",
+    "treemap"
+  ],
+  "build": {
+    "appId": "com.damducduy.vesper",
+    "productName": "Vesper",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.9.0"
+  }
+}
