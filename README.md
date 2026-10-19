@@ -10,6 +10,7 @@
 </p>
 
 <p align="center">
+  <a href="https://damducduyit.github.io/vesper/"><img src="https://img.shields.io/badge/Website-damducduyit.github.io%2Fvesper-00f2fe?style=flat-square&logo=safari&logoColor=black" alt="Website" /></a>
   <img src="https://img.shields.io/badge/Platform-macOS%20(Apple%20Silicon%20%26%20Intel)-000000?style=flat-square&logo=apple&logoColor=white" alt="Platform" />
   <img src="https://img.shields.io/badge/Electron-Desktop%20Native%20Vibrancy-47848F?style=flat-square&logo=electron&logoColor=white" alt="Electron" />
   <img src="https://img.shields.io/badge/License-MIT-30d158?style=flat-square" alt="License" />
