@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vesper — Native macOS Storage Inspector & Deep Cleaner</title>
+  <meta name="description" content="Giải mã và dọn dẹp triệt để Documents 60GB+ và System Data bị phình to trên máy Mac. Tìm ra các thư mục ẩn ~/.* và hàng vạn file nhỏ node_modules." />
+  <meta property="og:title" content="Vesper — Native macOS Storage Inspector & Deep Cleaner" />
+  <meta property="og:description" content="Khắc phục điểm mù Documents 60GB và System Data của macOS. Bản đồ Treemap trực quan, phân tích sâu, an toàn tuyệt đối." />
+  <meta property="og:image" content="assets/logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Atmospheric Background Glow -->
+  <div class="bg-glow-container">
+    <div class="bg-glow-top"></div>
+    <div class="bg-glow-bottom"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="assets/logo.svg" alt="Vesper Logo" class="nav-logo" />
+        <span>Vesper</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#demo" class="nav-link">Trải nghiệm thử</a>
+        <a href="#mystery" class="nav-link">Bí ẩn 60GB</a>
+        <a href="#features" class="nav-link">Tính năng</a>
+        <a href="#specs" class="nav-link">Kỹ thuật</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/DamDucDuyIT/vesper" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="https://github.com/DamDucDuyIT/vesper/releases/tag/v1.0.0" class="btn btn-primary btn-sm">
+          <span>Tải Vesper v1.0.0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag-wrap">
+        <div class="badge-tag">
+          <span class="badge-pill"></span>
+          <span>Vesper v1.0.0 cho macOS (Apple Silicon &amp; Intel)</span>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        Giải mã <span class="gradient-text">60 GB bí ẩn</span> trong mục Documents của máy Mac.
+      </h1>
+
+      <p class="hero-subtitle">
+        macOS gom toàn bộ thư mục ẩn <strong><code>~/.*</code></strong> và hàng trăm nghìn file nhỏ <strong><code>node_modules</code></strong> vào Documents nhưng lại giấu chúng khỏi Finder. <strong>Vesper</strong> soi rọi và dọn sạch.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://github.com/DamDucDuyIT/vesper/releases/tag/v1.0.0" class="btn btn-primary btn-lg">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14H2.75z"/><path d="M7.25 1.75v7.69L4.47 6.66a.75.75 0 0 0-1.06 1.06l4.06 4.06a.75.75 0 0 0 1.06 0l4.06-4.06a.75.75 0 1 0-1.06-1.06L8.75 9.44V1.75a.75.75 0 0 0-1.5 0z"/></svg>
+          <span>Tải xuống cho macOS (v1.0.0)</span>
+        </a>
+        <a href="https://github.com/DamDucDuyIT/vesper" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
+          <span>Xem mã nguồn (MIT)</span>
+        </a>
+      </div>
+
+      <div>
+        <div class="hero-cli-bar" id="cliCopyBtn" title="Click để sao chép lệnh chạy nhanh">
+          <code>git clone https://github.com/DamDucDuyIT/vesper.git &amp;&amp; cd vesper &amp;&amp; npm i &amp;&amp; npm start</code>
+          <span class="cli-copy-hint" id="cliCopyText">Sao chép</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Live Demo Section ("The One Live Thing") -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <div class="section-head" style="margin-bottom: 24px;">
+        <div class="section-caption">Trực quan hóa trực tiếp</div>
+        <h2 class="section-title">Trải nghiệm giao diện 3-Column macOS Native</h2>
+        <p class="section-desc">Click vào các danh mục bên dưới để xem Vesper bóc tách dung lượng thực tế theo thời gian thực.</p>
+      </div>
+
+      <!-- Live Simulated Window Frame -->
+      <div class="demo-window-frame">
+        <!-- Titlebar -->
+        <div class="demo-titlebar">
+          <div class="traffic-lights">
+            <span class="tl-dot tl-red"></span>
+            <span class="tl-dot tl-yellow"></span>
+            <span class="tl-dot tl-green"></span>
+          </div>
+          <div class="demo-titlebar-center">
+            <img src="assets/logo.svg" width="16" height="16" alt="logo" />
+            <span>Vesper — Storage Inspector</span>
+          </div>
+          <div class="demo-layout-controls">
+            <button class="demo-seg-btn active">Chia đôi</button>
+            <button class="demo-seg-btn">Danh sách</button>
+            <button class="demo-seg-btn">Bản đồ</button>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="demo-body">
+          <!-- Sidebar -->
+          <div class="demo-sidebar">
+            <div class="demo-sidebar-header">DỌN DẸP THÔNG MINH</div>
+            <button class="demo-nav-item active" data-cat="all">
+              <span>Tất cả phát hiện</span>
+              <span class="demo-badge">68.2 GB</span>
+            </button>
+            <button class="demo-nav-item" data-cat="hidden-home">
+              <span>Thư mục ẩn (~/.*)</span>
+              <span class="demo-badge">24.5 GB</span>
+            </button>
+            <button class="demo-nav-item" data-cat="dev-artifacts">
+              <span>Code &amp; Build</span>
+              <span class="demo-badge">28.4 GB</span>
+            </button>
+            <button class="demo-nav-item" data-cat="caches-logs">
+              <span>Caches &amp; Trash</span>
+              <span class="demo-badge">12.1 GB</span>
+            </button>
+            <button class="demo-nav-item" data-cat="app-data">
+              <span>App Support</span>
+              <span class="demo-badge">3.2 GB</span>
+            </button>
+
+            <div class="demo-sidebar-header" style="margin-top: 12px;">Ổ ĐĨA HỆ THỐNG</div>
+            <div style="padding: 6px 8px; background: rgba(255,255,255,0.03); border-radius: 6px; font-size: 11px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom: 3px;">
+                <span style="font-weight:600;">Macintosh HD</span>
+                <span style="color:var(--accent-green); font-family:var(--font-mono);">Trống 36.4 GB</span>
+              </div>
+              <div style="height:3px; background:rgba(255,255,255,0.1); border-radius:3px; overflow:hidden;">
+                <div style="width:85%; height:100%; background:var(--accent-blue);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main -->
+          <div class="demo-main">
+            <div class="demo-toolbar">
+              <span class="demo-view-title" id="demoTitle">Tất cả phát hiện (68.2 GB)</span>
+              <button class="demo-scan-btn" id="demoScanBtn">Mô phỏng Quét lại</button>
+            </div>
+
+            <!-- Treemap -->
+            <div class="demo-treemap-wrap">
+              <div class="demo-treemap" id="demoTreemap">
+                <!-- Dynamically populated by JS -->
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="demo-table-wrap">
+              <table class="demo-table">
+                <thead>
+                  <tr>
+                    <th style="width:30px;"></th>
+                    <th>Tên mục</th>
+                    <th>Phân loại</th>
+                    <th>Mức độ</th>
+                    <th style="text-align:right;">Dung lượng</th>
+                  </tr>
+                </thead>
+                <tbody id="demoTableBody">
+                  <!-- Dynamically populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Inspector -->
+          <div class="demo-inspector" id="demoInspector">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem & Solution (Mystery Unmasked) -->
+  <section class="section" id="mystery">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-caption">Khắc phục điểm mù macOS</div>
+        <h2 class="section-title">Tại sao mục Documents báo 60GB nhưng Large Files lại trống trơn?</h2>
+        <p class="section-desc">Công cụ System Settings > Storage mặc định của macOS được thiết kế cho người dùng cơ bản, vô tình tạo ra những "điểm mù" khổng lồ cho lập trình viên và power user.</p>
+      </div>
+
+      <div class="compare-grid">
+        <!-- macOS Default Flaw -->
+        <div class="compare-card flawed">
+          <div class="compare-header">
+            <div class="compare-icon-box">✕</div>
+            <h3>System Settings mặc định</h3>
+          </div>
+          <ul class="compare-list">
+            <li>
+              <span>⚠️</span>
+              <div>
+                <strong>Ẩn toàn bộ thư mục dấu chấm (<code>.</code>):</strong> Mọi thư mục <code>~/.cache</code>, <code>~/.npm</code>, <code>~/.gradle</code>, <code>~/.cargo</code> bị ẩn trong File Browser nhưng vẫn bị cộng dung lượng vào <em>Documents</em>.
+              </div>
+            </li>
+            <li>
+              <span>⚠️</span>
+              <div>
+                <strong>Bỏ qua hàng vạn file nhỏ:</strong> <em>Large Files</em> chỉ tìm file lẻ &gt; 50MB. Một thư mục <code>node_modules</code> chứa 120.000 file 5KB (tổng 20GB) hoàn toàn vô hình.
+              </div>
+            </li>
+            <li>
+              <span>⚠️</span>
+              <div>
+                <strong>Đánh đồng System Data:</strong> Dữ liệu tạm, logs ứng dụng và cache SDK Xcode bị gộp chung vào "System Data" mà không cho phép bấm vào để xem chi tiết hay xóa.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Vesper Solution -->
+        <div class="compare-card solved">
+          <div class="compare-header">
+            <div class="compare-icon-box">✓</div>
+            <h3>Giải pháp của Vesper</h3>
+          </div>
+          <ul class="compare-list">
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>Soi rọi 100% thư mục ẩn:</strong> Tự động bóc tách từng folder <code>~/.*</code>, phân loại rõ ràng cache của npm, gradle, pyenv, ollama, gemini...
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>Quét sâu cây thư mục &amp; Build Artifacts:</strong> Tìm ra mọi cụm <code>node_modules</code>, <code>.venv</code>, <code>target</code>, <code>.next</code> phân bổ trên máy bằng thuật toán cắt tỉa đa luồng.
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>Đo lường APFS vật lý thực tế:</strong> Tính toán chính xác dung lượng đĩa chiếm dụng bằng <code>du -skx</code>, không bị báo ảo bởi iCloud stub files.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Ghost Storage Hogs Section -->
+  <section class="section" id="features" style="background: rgba(255,255,255,0.015); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-caption">Thủ phạm ngầm</div>
+        <h2 class="section-title">Bóc trần 4 "hố đen" nuốt dung lượng trên macOS</h2>
+        <p class="section-desc">Vesper phân nhóm thông minh giúp bạn nhận biết ngay thư mục nào an toàn để xóa.</p>
+      </div>
+
+      <div class="ghost-grid">
+        <div class="ghost-card">
+          <div class="ghost-top">
+            <span style="font-size:22px;">🕵️</span>
+            <span class="ghost-badge" style="background:rgba(191,90,242,0.15); color:var(--accent-violet);">~/.*</span>
+          </div>
+          <h4>Thư mục ẩn trong Home</h4>
+          <p>Các thư mục <code>.cache</code>, <code>.npm</code>, <code>.gradle</code>, <code>.cargo</code>, <code>.local</code> sinh ra âm thầm khi bạn chạy lệnh CLI. Xóa an toàn để lấy lại hàng chục GB.</p>
+        </div>
+
+        <div class="ghost-card">
+          <div class="ghost-top">
+            <span style="font-size:22px;">📦</span>
+            <span class="ghost-badge" style="background:rgba(90,200,250,0.15); color:var(--accent-cyan);">node_modules</span>
+          </div>
+          <h4>Code &amp; Build Artifacts</h4>
+          <p>Mỗi project Node/Python/Rust cũ chứa hàng vạn file phụ thuộc. Vesper định vị tất cả <code>node_modules</code>, <code>.venv</code>, <code>target</code> nằm rải rác trong máy.</p>
+        </div>
+
+        <div class="ghost-card">
+          <div class="ghost-top">
+            <span style="font-size:22px;">🧹</span>
+            <span class="ghost-badge" style="background:rgba(48,209,88,0.15); color:var(--accent-green);">Library/Caches</span>
+          </div>
+          <h4>Bộ nhớ đệm &amp; Xcode</h4>
+          <p><code>~/Library/Caches</code>, logs hệ thống, và <code>Xcode/DerivedData</code> phình to sau mỗi lần biên dịch ứng dụng. Giải phóng ngay để hạ thấp System Data.</p>
+        </div>
+
+        <div class="ghost-card">
+          <div class="ghost-top">
+            <span style="font-size:22px;">🐘</span>
+            <span class="ghost-badge" style="background:rgba(255,159,10,0.15); color:var(--accent-amber);">&ge; 100MB</span>
+          </div>
+          <h4>File lớn &amp; AI Models</h4>
+          <p>Các file mô hình local (Ollama <code>.gguf</code>), image Docker, file <code>.dmg</code> cài đặt cũ nằm sâu trong thư mục ẩn mà Spotlight bỏ qua.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Specs & Philosophy -->
+  <section class="section" id="specs">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-caption">Triết lý thiết kế</div>
+        <h2 class="section-title">Xây dựng theo chuẩn Desktop Native, không "AI Slop"</h2>
+        <p class="section-desc">Không quảng cáo, không đăng ký định kỳ, không thu thập dữ liệu cá nhân.</p>
+      </div>
+
+      <div class="specs-grid">
+        <div class="spec-card">
+          <h4>🎨 macOS HIG Chuẩn mực</h4>
+          <p>Tận dụng NSVisualEffectView kính mờ, đèn giao thông tự nhiên, phông chữ SF Pro Display và số liệu tabular-nums mượt mà chống giật số khi quét thời gian thực.</p>
+        </div>
+
+        <div class="spec-card">
+          <h4>⚡ Đo lường APFS Siêu tốc</h4>
+          <p>Kết hợp <code>/usr/bin/du -skx</code> chạy song song đa luồng và <code>stat.blocks * 512</code>, đảm bảo tốc độ tối đa của ổ SSD Apple Silicon.</p>
+        </div>
+
+        <div class="spec-card">
+          <h4>🛡️ An toàn Tuyệt đối</h4>
+          <p>Đánh giá mức độ rủi ro (🟢 Safe, 🟡 Caution, 🔴 Careful) trước khi thao tác. Hỗ trợ đưa vào Thùng rác (Trash) trước khi chọn xóa vĩnh viễn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Download Section -->
+  <section class="section" id="download" style="padding-bottom: 60px;">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Lấy lại không gian cho chiếc Mac của bạn</h2>
+        <p>Vesper là phần mềm mã nguồn mở hoàn toàn miễn phí dưới giấy phép MIT. Tải xuống bản dựng sẵn hoặc chạy từ terminal chỉ trong vài giây.</p>
+        
+        <div class="cta-buttons">
+          <a href="https://github.com/DamDucDuyIT/vesper/releases/tag/v1.0.0" class="btn btn-primary btn-lg">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14H2.75z"/><path d="M7.25 1.75v7.69L4.47 6.66a.75.75 0 0 0-1.06 1.06l4.06 4.06a.75.75 0 0 0 1.06 0l4.06-4.06a.75.75 0 1 0-1.06-1.06L8.75 9.44V1.75a.75.75 0 0 0-1.5 0z"/></svg>
+            <span>Tải Vesper v1.0.0 (GitHub Releases)</span>
+          </a>
+          <a href="https://github.com/DamDucDuyIT/vesper" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
+            <span>Star trên GitHub ⭐</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <img src="assets/logo.svg" width="18" height="18" alt="Vesper" />
+        <span>Vesper &copy; 2026. Phát triển bởi <a href="https://github.com/DamDucDuyIT" target="_blank" rel="noopener" style="color:var(--text-primary); text-decoration:underline;">DamDucDuyIT</a>.</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://github.com/DamDucDuyIT/vesper/blob/main/LICENSE" target="_blank" rel="noopener">Giấy phép MIT</a>
+        <a href="https://github.com/DamDucDuyIT/vesper/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="https://github.com/DamDucDuyIT/vesper/issues" target="_blank" rel="noopener">Báo lỗi (Issues)</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Demo Script -->
+  <script>
+    const DEMO_DATA = {
+      all: [
+        { name: 'Projects/.../node_modules', path: '~/Projects/app/node_modules', cat: 'dev', size: '28.4 GB', bytes: 28.4, safety: 'safe', hint: '142.000 file nhỏ thư viện Node.js. macOS gom vào Documents nhưng Large Files không hiển thị.' },
+        { name: '.cache', path: '~/.cache', cat: 'hidden', size: '14.2 GB', bytes: 14.2, safety: 'safe', hint: 'Cache của pip, Playwright, HuggingFace... Nằm ẩn trong Home gây phình Documents.' },
+        { name: 'Xcode/DerivedData', path: '~/Library/Developer/Xcode/DerivedData', cat: 'cache', size: '12.1 GB', bytes: 12.1, safety: 'safe', hint: 'Dữ liệu build tạm của Xcode. Xóa hoàn toàn an toàn để lấy lại dung lượng ngay.' },
+        { name: '.npm', path: '~/.npm', cat: 'hidden', size: '6.2 GB', bytes: 6.2, safety: 'safe', hint: 'Kho cache gói npm đã tải về máy. Có thể xóa an toàn.' },
+        { name: '.gemini/antigravity-ide', path: '~/.gemini/antigravity-ide', cat: 'hidden', size: '3.1 GB', bytes: 3.1, safety: 'safe', hint: 'Lịch sử chat và video quay màn hình của phiên bản Antigravity cũ từ tháng 8.' },
+        { name: 'Application Support/Slack', path: '~/Library/Application Support/Slack', cat: 'app', size: '2.4 GB', bytes: 2.4, safety: 'careful', hint: 'Dữ liệu tin nhắn và cache của ứng dụng Slack.' },
+        { name: 'llama-3.2-3b.gguf', path: '~/.ollama/models/llama-3.2-3b.gguf', cat: 'large', size: '1.8 GB', bytes: 1.8, safety: 'caution', hint: 'Model AI LLM tải về chạy local.' }
+      ],
+      'hidden-home': [
+        { name: '.cache', path: '~/.cache', cat: 'hidden', size: '14.2 GB', bytes: 14.2, safety: 'safe', hint: 'Cache của pip, Playwright, HuggingFace... Nằm ẩn trong Home gây phình Documents.' },
+        { name: '.npm', path: '~/.npm', cat: 'hidden', size: '6.2 GB', bytes: 6.2, safety: 'safe', hint: 'Kho cache gói npm đã tải về máy. Có thể xóa an toàn.' },
+        { name: '.gemini/antigravity-ide', path: '~/.gemini/antigravity-ide', cat: 'hidden', size: '3.1 GB', bytes: 3.1, safety: 'safe', hint: 'Lịch sử chat và video quay màn hình của phiên bản Antigravity cũ từ tháng 8.' },
+        { name: '.gradle', path: '~/.gradle', cat: 'hidden', size: '1.0 GB', bytes: 1.0, safety: 'safe', hint: 'Cache build Java/Android.' }
+      ],
+      'dev-artifacts': [
+        { name: 'Projects/.../node_modules', path: '~/Projects/app/node_modules', cat: 'dev', size: '28.4 GB', bytes: 28.4, safety: 'safe', hint: '142.000 file nhỏ thư viện Node.js. macOS gom vào Documents nhưng Large Files không hiển thị.' }
+      ],
+      'caches-logs': [
+        { name: 'Xcode/DerivedData', path: '~/Library/Developer/Xcode/DerivedData', cat: 'cache', size: '12.1 GB', bytes: 12.1, safety: 'safe', hint: 'Dữ liệu build tạm của Xcode. Xóa hoàn toàn an toàn để lấy lại dung lượng ngay.' }
+      ],
+      'app-data': [
+        { name: 'Application Support/Slack', path: '~/Library/Application Support/Slack', cat: 'app', size: '2.4 GB', bytes: 2.4, safety: 'careful', hint: 'Dữ liệu tin nhắn và cache của ứng dụng Slack.' }
+      ]
+    };
+
+    let currentCat = 'all';
+    let selectedItem = DEMO_DATA.all[0];
+
+    function renderDemo() {
+      const items = DEMO_DATA[currentCat] || DEMO_DATA.all;
+      const treemapEl = document.getElementById('demoTreemap');
+      const tableBody = document.getElementById('demoTableBody');
+
+      // Treemap Render
+      treemapEl.innerHTML = '';
+      const totalBytes = items.reduce((s, it) => s + it.bytes, 0);
+
+      items.forEach((it, idx) => {
+        const pct = Math.max(12, Math.round((it.bytes / totalBytes) * 100));
+        const tile = document.createElement('div');
+        tile.className = 'tm-tile' + (selectedItem === it ? ' active' : '');
+        tile.style.flex = `${pct}`;
+        
+        let bg = '#157f4b';
+        if (it.cat === 'dev') bg = '#0e7490';
+        if (it.cat === 'hidden') bg = '#6d28d9';
+        if (it.cat === 'app') bg = '#1d4ed8';
+        if (it.safety === 'caution') bg = '#b45309';
+
+        tile.style.background = bg;
+        tile.innerHTML = `
+          <span class="tm-tile-name">${it.name}</span>
+          <span class="tm-tile-size">${it.size}</span>
+        `;
+        tile.addEventListener('click', () => {
+          selectedItem = it;
+          renderDemo();
+        });
+        treemapEl.appendChild(tile);
+      });
+
+      // Table Render
+      tableBody.innerHTML = items.map((it) => {
+        const isFocused = selectedItem === it;
+        const badgeClass = it.safety === 'safe' ? 'badge-safe' : it.safety === 'caution' ? 'badge-caution' : 'badge-careful';
+        const badgeLabel = it.safety === 'safe' ? 'An toàn xóa' : it.safety === 'caution' ? 'Cân nhắc' : 'Cẩn trọng';
+
+        return `
+          <tr class="${isFocused ? 'focused' : ''}">
+            <td style="color:var(--text-muted); font-size:10px;">✦</td>
+            <td><strong>${it.name}</strong></td>
+            <td style="color:var(--text-secondary);">${it.cat.toUpperCase()}</td>
+            <td><span class="insp-badge ${badgeClass}">${badgeLabel}</span></td>
+            <td style="text-align:right; font-family:var(--font-mono); font-weight:600;">${it.size}</td>
+          </tr>
+        `;
+      }).join('');
+
+      tableBody.querySelectorAll('tr').forEach((tr, i) => {
+        tr.addEventListener('click', () => {
+          selectedItem = items[i];
+          renderDemo();
+        });
+      });
+
+      // Inspector Render
+      const inspEl = document.getElementById('demoInspector');
+      const badgeClass = selectedItem.safety === 'safe' ? 'badge-safe' : selectedItem.safety === 'caution' ? 'badge-caution' : 'badge-careful';
+      const badgeLabel = selectedItem.safety === 'safe' ? 'An toàn xóa' : selectedItem.safety === 'caution' ? 'Cân nhắc' : 'Cẩn trọng';
+
+      inspEl.innerHTML = `
+        <div style="font-size:10px; font-weight:700; color:var(--text-muted); letter-spacing:0.5px;">INSPECTOR</div>
+        <div class="insp-title">${selectedItem.name}</div>
+        <div class="insp-size">${selectedItem.size}</div>
+        <span class="insp-badge ${badgeClass}">● ${badgeLabel}</span>
+        <div class="insp-hint">
+          ${selectedItem.hint}
+        </div>
+        <div style="margin-top:auto; font-family:var(--font-mono); font-size:9.5px; color:var(--text-muted); word-break:break-all;">
+          ${selectedItem.path}
+        </div>
+      `;
+    }
+
+    // Category click listeners
+    document.querySelectorAll('.demo-nav-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.demo-nav-item').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCat = btn.dataset.cat;
+        selectedItem = (DEMO_DATA[currentCat] || DEMO_DATA.all)[0];
+        document.getElementById('demoTitle').textContent = btn.querySelector('span').textContent;
+        renderDemo();
+      });
+    });
+
+    // Simulated scan button
+    document.getElementById('demoScanBtn').addEventListener('click', () => {
+      const btn = document.getElementById('demoScanBtn');
+      btn.textContent = 'Đang quét...';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Mô phỏng Quét lại';
+        btn.disabled = false;
+        renderDemo();
+      }, 700);
+    });
+
+    // Initial render
+    renderDemo();
+
+    // CLI copy button
+    document.getElementById('cliCopyBtn').addEventListener('click', () => {
+      const cmd = 'git clone https://github.com/DamDucDuyIT/vesper.git && cd vesper && npm i && npm start';
+      navigator.clipboard.writeText(cmd).then(() => {
+        const hint = document.getElementById('cliCopyText');
+        hint.textContent = 'Đã sao chép!';
+        setTimeout(() => { hint.textContent = 'Sao chép'; }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
